@@ -60,6 +60,11 @@ sasasadasda
 	extentions = 0
 	var HTMLFlag blackfriday.HTMLFlags
 	HTMLFlag = blackfriday.UseXHTML
+	HTMLFlag |= blackfriday.Smartypants
+	HTMLFlag |= blackfriday.SmartypantsFractions
+	HTMLFlag |= blackfriday.SmartypantsDashes
+	HTMLFlag |= blackfriday.SmartypantsLatexDashes
+	// HTMLFlag = blackfriday.CommonHTMLFlags
 	// 動いてないかも？？？？
 	// よくわからぬ
 	// https://github.com/russross/blackfriday/blob/v2/inline_test.go
@@ -91,6 +96,7 @@ sasasadasda
 	// 最初にタブあると、その文がコードで表記されちゃう
 	testData2 := `
 <!-- テストデータだよ！！！ -->
+<div class="test">
 <p>aaa</p>
 <img data-action="display" style="display: none;"/>
 <img src="https://qiita-image-store.s3.amazonaws.com/0/45617/015bd058-7ea0-e6a5-b9cb-36a4fb38e59c.png">
@@ -122,7 +128,8 @@ sasasadasda
 <option value="サンプル2">サンプル2</option>
 <option value="サンプル3">サンプル3</option>
 </select>
-</form>`
+</form>
+</div>`
 
 	fmt.Println()
 	fmt.Println()
