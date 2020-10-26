@@ -43,7 +43,7 @@ require (
 	github.com/pelletier/go-toml v1.8.1
 	github.com/pkg/errors v0.9.1
 	github.com/rogpeppe/go-internal v1.6.2
-	github.com/KinoshitaYstr/blackfriday/v2 v2.0.1
+	github.com/russross/blackfriday/v2 v2.0.1
 	github.com/rwcarlsen/goexif v0.0.0-20190401172101-9e8deecbddbd
 	github.com/sanity-io/litter v1.3.0
 	github.com/spf13/afero v1.4.1
@@ -68,5 +68,7 @@ require (
 )
 
 replace github.com/markbates/inflect => github.com/markbates/inflect v0.0.0-20171215194931-a12c3aec81a6
+replace github.com/russross/blackfriday/v2 => ./blackfriday
+// replace github.com/russross/blackfriday/v2 => github.com/KinoshitaYstr/blackfriday/v2
 
 go 1.15

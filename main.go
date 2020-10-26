@@ -5,12 +5,11 @@ import (
 	"strings"
 
 	_ "github.com/gohugoio/hugo/helpers"
-	"github.com/russross/blackfriday/v2"
 
-	// "github.com/russross/blackfriday/v2"
-	// _ "github.com/russross/blackfriday/v2"
-	"github.com/KinoshitaYstr/blackfriday/v2"
-	_ "github.com/KinoshitaYstr/blackfriday/v2"
+	"github.com/russross/blackfriday/v2"
+	_ "github.com/russross/blackfriday/v2"
+	// "github.com/KinoshitaYstr/blackfriday/v2"
+	// _ "github.com/KinoshitaYstr/blackfriday/v2"
 )
 
 // https://github.com/russross/blackfriday/blob/acedacffef10e8f1943455d4dd8bb8f4dfe8d0f8/block_test.go#L968
