@@ -94,43 +94,83 @@ sasasadasda
 	}
 
 	// 最初にタブあると、その文がコードで表記されちゃう
+	// 	testData2 := `
+	// <!-- テストデータだよ！！！ -->
+	// # aaaaaaaaaa
+	// <div class="test">
+	// <p>aaa</p>
+	// <img data-action="display" style="display: none;"/>
+	// <img src="https://qiita-image-store.s3.amazonaws.com/0/45617/015bd058-7ea0-e6a5-b9cb-36a4fb38e59c.png">
+	// ネコ（猫）は、狭義には食肉目ネコ科ネコ属に分類されるリビアヤマネコ（ヨーロッパヤマネコ）が家畜化されたイエネコ（家猫、Felis silvestris catus）に対する通称である。
+	// イヌ（犬）と並ぶ代表的なペットとして日本を含め世界中で広く飼われている。>_<
+	// <!-- <img data-action="erase" style="display: none;"/> -->
+	// <!-- <img data-action="hidden" style="display: none;"/> -->
+	// <!-- <img data-action="display" style="display: none;"/> -->
+	// <img src="https://qiita-image-store.s3.amazonaws.com/0/45617/015bd058-7ea0-e6a5-b9cb-36a4fb38e59c.png">
+	// より広義には、ヤマネコやネコ科動物全般を指すこともある
+	// by wikipedia
+	// <img data-action="erase" style="display: none;"/>
+	// <img data-action="hidden" style="display: none;"/>
+	// ![Qiita](https://qiita-image-store.s3.amazonaws.com/0/45617/015bd058-7ea0-e6a5-b9cb-36a4fb38e59c.png "Qiita")
+	// <div class="aa"
+	// id="ok">
+	// sasasadasda
+	// </div>
+	// <form method="post" action="/">
+	// <select name="example">
+	// <option value="サンプル1">サンプル1</option>
+	// <option value="サンプル2">サンプル2</option>
+	// <option value="サンプル3">サンプル3</option>
+	// </select>
+	// </form>
+	// <form method="post" action="/">
+	// <select name="example">
+	// <option value="サンプル1">サンプル1</option>
+	// <option value="サンプル2">サンプル2</option>
+	// <option value="サンプル3">サンプル3</option>
+	// </select>
+	// </form>
+	// </div>`
+
 	testData2 := `
-<!-- テストデータだよ！！！ -->
-# aaaaaaaaaa
-<div class="test">
-<p>aaa</p>
+Simple block on one line:
+
+<div>foo</div>
+
+And nested without indentation:
+
 <img data-action="display" style="display: none;"/>
-<img src="https://qiita-image-store.s3.amazonaws.com/0/45617/015bd058-7ea0-e6a5-b9cb-36a4fb38e59c.png">
-ネコ（猫）は、狭義には食肉目ネコ科ネコ属に分類されるリビアヤマネコ（ヨーロッパヤマネコ）が家畜化されたイエネコ（家猫、Felis silvestris catus）に対する通称である。
-イヌ（犬）と並ぶ代表的なペットとして日本を含め世界中で広く飼われている。>_<
-<!-- <img data-action="erase" style="display: none;"/> -->
-<!-- <img data-action="hidden" style="display: none;"/> -->
-<!-- <img data-action="display" style="display: none;"/> -->
-<img src="https://qiita-image-store.s3.amazonaws.com/0/45617/015bd058-7ea0-e6a5-b9cb-36a4fb38e59c.png">
-より広義には、ヤマネコやネコ科動物全般を指すこともある
-by wikipedia
-<img data-action="erase" style="display: none;"/>
-<img data-action="hidden" style="display: none;"/>
+
 ![Qiita](https://qiita-image-store.s3.amazonaws.com/0/45617/015bd058-7ea0-e6a5-b9cb-36a4fb38e59c.png "Qiita")
-<div class="aa"
-id="ok">
-sasasadasda
-</div>
+
+ネコ（猫）は、狭義には食肉目ネコ科ネコ属に分類されるリビアヤマネコ（ヨーロッパヤマネコ）が家畜化されたイエネコ（家猫、Felis silvestris catus）に対する通称である。
+
+イヌ（犬）と並ぶ代表的なペットとして日本を含め世界中で広く飼われている。>_<
+
 <form method="post" action="/">
-	<select name="example">
-		<option value="サンプル1">サンプル1</option>
-		<option value="サンプル2">サンプル2</option>
-		<option value="サンプル3">サンプル3</option>
-	</select>
-</form>
-<form method="post" action="/">
+
 <select name="example">
+
 <option value="サンプル1">サンプル1</option>
+
 <option value="サンプル2">サンプル2</option>
+
 <option value="サンプル3">サンプル3</option>
+
 </select>
+
 </form>
-</div>`
+
+<div>
+<div>
+<div>
+foo
+</div>
+<div style=">"/>
+</div>
+<div>bar</div>
+</div>
+`
 
 	fmt.Println()
 	fmt.Println()
@@ -139,9 +179,14 @@ sasasadasda
 	for i, str := range strings.Split(testData2, "\n") {
 		fmt.Println(i)
 		fmt.Println(str)
-		fmt.Println(string(blackfriday.Run([]byte(str+"\n"), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(extentions), blackfriday.WithRefOverride(referenceOverride))))
+		fmt.Println(string(blackfriday.Run([]byte(str), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(extentions), blackfriday.WithRefOverride(referenceOverride))))
 	}
+
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
 	fmt.Println(string(blackfriday.Run([]byte(testData2), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(extentions), blackfriday.WithRefOverride(referenceOverride))))
+	// fmt.Println(string(blackfriday.Run([]byte(testData2), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(extentions))))
 	// fmt.Println(string(blackfriday.Run([]byte("<div>"+testData2+"</div>\n"), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(extentions), blackfriday.WithRefOverride(referenceOverride))))
 	// fmt.Println(string(blackfriday.Run([]byte("<div>(=^・・^=)</div>\n"), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(extentions), blackfriday.WithRefOverride(referenceOverride))))
 	// fmt.Println(string(blackfriday.Run([]byte(`<img src="https://qiita-image-store.s3.amazonaws.com/0/45617/015bd058-7ea0-e6a5-b9cb-36a4fb38e59c.png">`+"\n"), blackfriday.WithRenderer(renderer), blackfriday.WithExtensions(extentions), blackfriday.WithRefOverride(referenceOverride))))
