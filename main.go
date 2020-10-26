@@ -96,6 +96,7 @@ sasasadasda
 	// 最初にタブあると、その文がコードで表記されちゃう
 	testData2 := `
 <!-- テストデータだよ！！！ -->
+# aaaaaaaaaa
 <div class="test">
 <p>aaa</p>
 <img data-action="display" style="display: none;"/>
